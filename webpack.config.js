@@ -7,7 +7,7 @@ module.exports = {
         'core-js/stable',
         'whatwg-fetch',
         'es6-promise/auto',
-        './src/main.tsx'],
+        './src/app/main.tsx'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
