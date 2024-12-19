@@ -61,7 +61,7 @@ export const LineWithArrow = () => {
 
 export const Ticket = ({ ticket, currency, exchangeRates }: TicketProps) => {
     const rate = currency === "RUB" ? 1 : exchangeRates?.[currency];
-    const visiblePrice = rate !== undefined ? (ticket.price * rate).toLocaleString() : "Loading...";
+    const visiblePrice = rate !== undefined ? Math.round(ticket.price * rate).toLocaleString() : "Loading...";
 
     return (
 <div className="flex max-w-lg min-w-72 max-h-[146px] md:max-h-[120px] flex-col-reverse md:flex-row items-center border rounded-lg shadow-md p-1 bg-white mb-4">
