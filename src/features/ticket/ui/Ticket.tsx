@@ -2,10 +2,10 @@ import React from "react";
 import {TicketProps} from "../model/types";
 
 const airlineLogos: Record<string, string> = {
-    S7: "/s7.png",
-    SU: "/aeroflot.png",
-    TK: "/turkish.png",
-    BA: "/british.png",
+    S7: "assets/s7.png",
+    SU: "assets/aeroflot.png",
+    TK: "assets/turkish.png",
+    BA: "assets/british.png",
 };
 
 const currencySymbol = {
