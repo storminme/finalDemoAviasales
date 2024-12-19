@@ -2,7 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: ['core-js/stable', 'regenerator-runtime/runtime', './src/index.tsx'],
+    entry: [
+        'core-js/stable',
+        'whatwg-fetch',
+        'es6-promise/auto',
+        './src/main.tsx'],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
@@ -11,30 +15,30 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: {
-                    loader: 'ts-loader',
-                    options: {
-                        transpileOnly: true,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                [
+                                    '@babel/preset-env',
+                                    {
+                                        targets: 'ie 11',
+                                        useBuiltIns: 'entry',
+                                        corejs: 3,
+                                    },
+                                ],
+                                '@babel/preset-react',
+                                '@babel/preset-typescript',
+                            ],
+                            plugins: ['@babel/plugin-transform-runtime'],
+                        },
                     },
-                },
-                exclude: /node_modules/,
-            },
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            ['@babel/preset-env', { targets: { ie: '11' }, useBuiltIns: 'entry', corejs: 3 }],
-                            '@babel/preset-react',
-                        ],
-                    },
-                },
+                ],
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                use: ['style-loader', 'css-loader', 'postcss-loader'],
             },
         ],
     },
@@ -47,10 +51,10 @@ module.exports = {
         }),
     ],
     devServer: {
-        static: './dist',
-        port: 3000,
+        static: path.resolve(__dirname, 'public'),
         host: '0.0.0.0',
         allowedHosts: 'all',
+        client: false,
     },
     target: ['web', 'es5'],
 };
