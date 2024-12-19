@@ -7,19 +7,15 @@ const FetchTickets = (): Promise<typeTicket[]> => {
       fetch('data/tickets.json')
         .then((response) => {
           if (!response.ok) {
-            console.error(`HTTP error! Status: ${response.status}`);
             reject(new Error(`HTTP error! Status: ${response.status}`));
           }
 
-          console.log('Response received:', response);
           return response.json() as Promise<TicketsResponse>;
         })
         .then((data) => {
-          console.log('Data received:', data);
           resolve(data.tickets);
         })
         .catch((error) => {
-          console.error('Fetch error:', error);
           reject(error);
         });
     }, 2000);
