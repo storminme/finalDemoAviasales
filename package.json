@@ -6,7 +6,9 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\" --config .prettierrc"
+    "format": "prettier --write \"src/**/*.{ts,tsx}\" --config .prettierrc",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.9",
@@ -14,6 +16,7 @@
     "clsx": "^2.1.1",
     "es6-promise": "^4.2.8",
     "flexibility": "^2.0.1",
+    "gh-pages": "^6.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "websocket-extensions": "^0.1.4",
@@ -46,5 +49,5 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.2.0"
   },
-  "private": true
+  "homepage": "https://storminme.github.io/finalDemoAviasales"
 }
